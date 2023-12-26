@@ -7,144 +7,122 @@ let Player_two_win_count = 0;
 
 let steps = 0;
 let board = [
-  ["", null, "zero"],
+  ["", null, 0],
   [null, "", null],
-  ["", null, ""],
+  [8, null, 1],
 ];
 
 //clear board function
 function clearBoard() {
   board = [
-    ["", null, "zero"],
+    ["", null, 0],
     [null, "", null],
-    ["", null, ""],
+    [8, null, 1],
   ];
+  div.forEach((element) => {
+    element.innerHTML = "";
+  });
   steps = 0;
 }
 
 //is Game Over
 function isGameOver(theBoard) {
-  // checking for row
+  console.log(board);
+  //checking for row
   for (let i = 0; i < 3; i++) {
-    if (
-      theBoard[i][0] === theBoard[i][1] &&
-      theBoard[i][1] === theBoard[i][2]
-    ) {
-      clearBoard();
-      if (theBoard[i][0] === "O") {
+    if (board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
+      if (board[i][0] === "O") {
         Player_one_win_count += 1;
         player1_0.innerHTML = Player_one_win_count;
         setTimeout(() => {
-          div.forEach((element) => {
-            element.innerHTML = "";
-          });
-          alert("Player 1 Wins");
+          alert("Winner is Player One");
+          clearBoard();
         });
       } else {
         Player_two_win_count += 1;
         player2_X.innerHTML = Player_two_win_count;
         setTimeout(() => {
-          div.forEach((element) => {
-            element.innerHTML = "";
-          });
-          alert("Player 2 Wins");
+          alert("Winner is Player Two");
+          clearBoard();
         });
       }
       return;
     }
   }
-  // checking for collumn
+
+  //checking for collumn
   for (let i = 0; i < 3; i++) {
-    if (
-      theBoard[0][i] === theBoard[1][i] &&
-      theBoard[1][i] === theBoard[2][i]
-    ) {
-      clearBoard();
-      if (theBoard[0][i] === "O") {
+    if (board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
+      if (board[0][i] === "O") {
         Player_one_win_count += 1;
         player1_0.innerHTML = Player_one_win_count;
         setTimeout(() => {
-          div.forEach((element) => {
-            element.innerHTML = "";
-          });
-          alert("Player 1 Wins");
+          alert("Winner is Player One");
+          clearBoard();
         });
       } else {
         Player_two_win_count += 1;
         player2_X.innerHTML = Player_two_win_count;
         setTimeout(() => {
-          div.forEach((element) => {
-            element.innerHTML = "";
-          });
-          alert("Player 2 Wins");
+          alert("Winner is Player Two");
+          clearBoard();
         });
       }
       return;
     }
   }
-  // checking for diagnol and antidiagnol
-  if (theBoard[0][0] === theBoard[1][1] && theBoard[1][1] === theBoard[2][2]) {
-    clearBoard();
-    if (theBoard[0][0] === "O") {
+
+  //checking for diagonal and anti diagonal
+  if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+    if (board[0][0] === "O") {
       Player_one_win_count += 1;
       player1_0.innerHTML = Player_one_win_count;
       setTimeout(() => {
-        div.forEach((element) => {
-          element.innerHTML = "";
-        });
-        alert("Player 1 Wins");
+        alert("Winner is Player One");
+        clearBoard();
       });
     } else {
       Player_two_win_count += 1;
       player2_X.innerHTML = Player_two_win_count;
       setTimeout(() => {
-        div.forEach((element) => {
-          element.innerHTML = "";
-        });
-        alert("Player 2 Wins");
+        alert("Winner is Player Two");
+        clearBoard();
       });
     }
     return;
-  } else if (
-    theBoard[0][2] === theBoard[1][1] &&
-    theBoard[1][1] === theBoard[2][0]
-  ) {
-    clearBoard();
-    if (theBoard[1][1] === "O") {
+  } else if (board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
+    if (board[0][2] === "O") {
       Player_one_win_count += 1;
       player1_0.innerHTML = Player_one_win_count;
       setTimeout(() => {
-        div.forEach((element) => {
-          element.innerHTML = "";
-        });
-        alert("Player 1 Wins");
+        alert("Winner is Player One");
+        clearBoard();
       });
     } else {
       Player_two_win_count += 1;
       player2_X.innerHTML = Player_two_win_count;
       setTimeout(() => {
-        div.forEach((element) => {
-          element.innerHTML = "";
-        });
-        alert("Player 2 Wins");
+        alert("Winner is Player Two");
+        clearBoard();
       });
     }
     return;
   }
-  // draw logic
+
+  //Logic for Draw
   let count = 0;
   div.forEach((element) => {
-    if (element.innerHTML === "") count += 1;
+    if (element.innerHTML === "") {
+      count += 1;
+    }
   });
   if (count === 0) {
-    clearBoard();
-    div.forEach((element) => {
-      element.innerHTML = "";
-    });
     setTimeout(() => {
       alert("Draw");
+      clearBoard();
     });
   }
+  return;
 }
 
 // logic for building the board
