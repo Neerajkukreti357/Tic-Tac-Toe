@@ -19,6 +19,7 @@ function clearBoard() {
     [null, "", null],
     ["", null, ""],
   ];
+  steps = 0;
 }
 
 //is Game Over
